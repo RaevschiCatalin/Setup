@@ -1,26 +1,19 @@
-#!/bin/bash
-
-# Change directory to ~/repos
 cd ~/repos
+# you can change ~/repos to any directory you wish your project to be saved
 
-# Request project name from user
 read -p "Enter project name: " projectname
 
-# Clone the GitHub repository
-git clone "git@github.com:RaevschiCatalin/$projectname.git"
+git clone "git@github.com:Your_nickname/$projectname.git"
+#change Your_nickname to your github nick
 
-# Change directory to the project
 cd "$projectname"
 
-# Create a new Vite project
 npm create vite@latest
 
 cd App
-
-# Install tailwindcss, postcss, and autoprefixer as dev dependencies
+#change App to the title you want your vite project to have(Don't recommend)
 npm install -D tailwindcss postcss autoprefixer
 
-# Initialize tailwindcss configuration
 npx tailwindcss init -p
 
 cat > tailwind.config.js << EOL
@@ -37,26 +30,22 @@ module.exports = {
 };
 EOL
 
-# Change directory to the App folder
 
-
-# Change directory to the src folder
 cd src
 
-# Modify the index.css file with sudo
+
 sudo bash -c 'cat > index.css << EOL
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 EOL'
 
-# Go back to the App folder
+
 cd ..
 
-# Start the development server
 npm run dev
 
 # Add, commit, and push changes to GitHub
-# git add .
-# git commit -m "Initial commit"
-# git push origin main
+ git add .
+git commit -m "Initial commit"
+git push origin main
